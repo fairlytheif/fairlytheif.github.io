@@ -1,0 +1,16 @@
+canvas{
+    display: block;
+    height: 500px;
+    width: 900px;
+    background-color: #000;
+    margin: 0 auto;
+}
+.game{
+    user-select: none;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-family: tahoma;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
