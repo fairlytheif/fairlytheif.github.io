@@ -1,6 +1,9 @@
-window.onload = function(){
+// fairlytheif.github.io
+
+window.onload = function(){ // beginning of the beginning
     addEventListener('keydown',keyPush);
     setInterval(game, 1000/60);
+    alert("Use WASD or arrows")
 }
 let
 canvas = document.getElementById('gameC'),
@@ -13,56 +16,38 @@ appleWidth = appleHeight = 17,
 apples = [],
 texter = 0,
 tail = 20,
-trail = [],
+trail = [], // the whole snake
 score = 0,
 failed = false,
-eated = false,
 direction,
-appls = false,
-appleEated = 1,
 newApple ={
     x: ~~(Math.random() * canvas.width /3),
     y: ~~(Math.random() * canvas.height /3),
     color: "red"
 },
-secondApples ={
-    x: ~~(Math.random() * canvas.width),
-    y: ~~(Math.random() * canvas.height),
-    color: "red"
-},
-thirdApples ={
-    x: ~~(Math.random() * canvas.width),
-    y: ~~(Math.random() * canvas.height),
-    color: "red"
-},
 speed = baseSpeed = 0;
 setSpeed(999)
-canvas.width = canvas.offsetWidth;
+canvas.width = canvas.offsetWidth; // canvas degradation off
 canvas.height = canvas.offsetHeight;
 
-//////////////////!!!!!!!!!!!!! 295x
-function keyPush(key){
+
+function keyPush(key){ // keycode detection
     gameStarted = true;
 
     if(direction !== "right" && key.keyCode == 37 || direction !== "right" && key.keyCode == 65)
     {direction = "left";
-
     console.log(direction)} 
     else if(direction !== "down" && key.keyCode == 38 || direction !== "down" && key.keyCode == 87)
     {direction = "up"; 
-
     console.log(direction)} 
     else if(direction !== "left" && key.keyCode == 39 || direction !== "left" && key.keyCode == 68)
     {direction = "right";
-
-    console.log(direction) 
-}
+    console.log(direction)}
     else if(direction !== "up" && key.keyCode == 40 || direction !== "up" && key.keyCode == 83)
     {direction = "down"; 
-
     console.log(direction)} 
 }
-function dir(){
+function dir(){ // change direction func
     if(direction == "left"){
         pPosX = pPosX -2 - speed;
     }
@@ -76,27 +61,23 @@ function dir(){
         pPosY = pPosY +2 + speed;
     }
 }
-/////////////!!!!!!!!!!!!!!!!!!
 
-function game(){
+function game(){ // main loop
     ctx.imageSmoothingEnabled = false;
     returnSnake()
     ctx.fillStyle = "black";
     ctx.fillRect(0,0, canvas.width, canvas.height);
     gameStart();
+};
 
-
-    
-}
-
-function snake(){
-    returnSnake()
+function snake(){ // paint snake
+    returnSnake() // field boundary func
     if(failed == false){
         ctx.fillStyle = 'lime';
     }
     else{
         ctx.fillStyle = "red";
-    }
+    };
     for(let i = 0; i < trail.length; i++ )
     {
       ctx.fillRect(trail[i].x, trail[i].y, playerWidth, playerHeight)
@@ -106,102 +87,65 @@ function snake(){
           if(failed == true){
             setInterval(trailShifter, 10)
             appleEated = 1;
-            score = 0;
-            
+            score = 0;  
           }
             else if(failed == false){
                 clearInterval(trailShifter)
-            }
-      }
-    }
+            };
+        };
+    };
     trail.push({x: pPosX, y: pPosY, color: ctx.fillStyle})
     if( trail.length > tail + score )
   {
     trail.shift();
-  }
-}
-function trailShifter(){
+  };
+};
+
+
+function trailShifter(){ // shift tail to defualt
     if(trail.length >= tail + score && failed == true){
         trail.shift()
-        clearInterval(game)
-        clearInterval(snake)
         speed = 0;
     }
     else{
         clearInterval(trailShifter)
         failed = false;
-    }
-}
+    };
+};
 
-function MathPosition(object){
-    object.x = ~~(Math.random() * canvas.width);
-    object.y = ~~(Math.random() * canvas.height);
-
-}
-function ScoreTexter(){
+function ScoreTexter(){ // score text under canvas
     let scoreText = document.getElementById("scoreText");
     scoreText.innerHTML = "score:" + "" + score ;
 }
-function spawnApple(){
-
-           
-                                                            ///  x: ~~(Math.random() * canvas.width),
-                                                      /// y: ~~(Math.random() * canvas.height),                 
-                                                             /// color: 'red'
-
-    if(appls == false){
-            ctx.fillStyle = newApple.color;
-        ctx.fillRect(newApple.x, newApple.y, appleWidth, appleHeight);
-        appls == true
+function spawnApple(){ // spawn apples, lol
+    ctx.fillStyle = "red"
+    for(let i = 0; i < apples.length; i++ )
+    {
+      ctx.fillRect(newApple.x, newApple.y, appleWidth, appleHeight)
+          if(pPosX < (newApple.x + playerWidth)
+          && pPosX + playerWidth > newApple.x
+          && pPosY < (newApple.y + playerHeight)
+          && pPosY + playerHeight > newApple.y){
+              score += 7;
+              ScoreTexter()
+              speed += .1;
+              newApple.x = ~~(Math.random() * canvas.width);
+              newApple.y = ~~(Math.random() * canvas.height);    
+          };
+       };
     };
-   if(appleEated > 2 && eated == false){
-    ctx.fillStyle = secondApples.color;
-    ctx.fillRect(secondApples.x, secondApples.y, appleWidth, appleHeight);
-     };
-     if(appleEated > 17 && eated == false){
-        ctx.fillStyle = thirdApples.color;
-        ctx.fillRect(thirdApples.x, thirdApples.y, appleWidth, appleHeight);
-         };
-     if(pPosX < (newApple.x + playerWidth)
-     && pPosX + playerWidth > newApple.x
-     && pPosY < (newApple.y + playerHeight)
-     && pPosY + playerHeight > newApple.y){
-        appleEated +=1;
-       score += 7;
-       ScoreTexter()
-       speed += .1;
-       appls = false;
-       newApple.x = ~~(Math.random() * canvas.width);
-       newApple.y = ~~(Math.random() * canvas.height);
-    }
-    if(pPosX < (secondApples.x + playerWidth)
-    && pPosX + playerWidth > secondApples.x
-    && pPosY < (secondApples.y + playerHeight)
-    && pPosY + playerHeight > secondApples.y){
-        appleEated +=1;
-       score += 7;
-       ScoreTexter()
-       speed += .1;
-       secondApples.x = ~~(Math.random() * canvas.width);
-       secondApples.y = ~~(Math.random() * canvas.height);
-    }if(pPosX < (thirdApples.x + playerWidth)
-    && pPosX + playerWidth > thirdApples.x
-    && pPosY < (thirdApples.y + playerHeight)
-    && pPosY + playerHeight > thirdApples.y){
-        appleEated +=1;
-       score += 7;
-       ScoreTexter()
-        speed += .1;
-       thirdApples.x = ~~(Math.random() * canvas.width);
-       thirdApples.y = ~~(Math.random() * canvas.height);
-    }
+    apples.push({x: pPosX, y: pPosY, color: ctx.fillStyle})
+    if( pPosX < (newApple.x + playerWidth)
+    && pPosX + playerWidth > newApple.x
+    && pPosY < (newApple.y + playerHeight)
+     && pPosY + playerHeight > newApple.y)
+  {
+    apples.shift();
 };
 
-function gameStart(){
+function gameStart(){ // game start
     if(gameStarted == true){
-        if(appls == false){
             spawnApple()
-        }
         snake();
         dir();
         ///spawnApple();
@@ -210,22 +154,24 @@ function gameStart(){
             gameText.innerHTML = "Game Started";
             gameText.style.color = "#" + "ff1300";
         setTimeout(gameTexter, 1000);
-        }
-    }
-}
-function gameTexter(){
+        };
+    };
+};
+
+function gameTexter(){ // main text over canvas
     let gameText = document.getElementById("game_text");
     gameText.style.color = "#" + "fff";
     setTimeout(() => gameText.style.color = "#" + "ff1300", 500)
     setTimeout(() => gameText.style.color = "#" + "fff", 2000)
     texter = 1;
-}
+};
 
-function setSpeed(speed){
+function setSpeed(speed){ // interval, game pace
     setInterval(game,speed)
     console.log("speed:" + speed)
-}
-function returnSnake(){
+};
+
+function returnSnake(){ // field boundary limit(teleport)
     if( pPosX > canvas.width )
     {pPosX = 0;}
 
@@ -237,4 +183,4 @@ function returnSnake(){
 
   if( pPosY > canvas.height )
     {pPosY = 0;}
-}
+};
