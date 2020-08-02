@@ -6,20 +6,25 @@
     <title>fairlytheif</title>
     <link rel="stylesheet" href="snake.css">
     <link rel="stylesheet" href="main.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="main.js"></script>
 </head>
 <body>
     <div class="header">
-    <div class="header_menu">
-        <li  class="li_header main_a"><a href="">fairlytheif</a></li>
-    <li class="li_header"><a href="">works</a><ul>
-        <li style="color: green;"><a href="index.html">calculator</a></li>
-        <li style="color: red;" ><a href="">snake game</a></li>
-    </ul></li>
-    <li class="li_header"><a href="">contacts</a><ul>
-        <li class="a_class"><a href="https://github.com/fairlytheif/junior-road">github</a></li>
-    </ul></li>
+        <div class="header_menu">
+            <li  class="li_header main_a"><a href="index.html">fairlytheif</a></li>
+        <li class="li_header"  onclick="fadeFunc(1)"><p>works</p><ul id="li_menu1">
+            <li style="color: green;" ><a href="">calculator</a></li>
+            <li style="color: red;" ><a href="snake.html">snake game</a></li>
+        </ul></li>
+        <li class="li_header" onclick="fadeFunc(2)"><p>contacts</p><ul id="li_menu2">
+            <li class="a_class"><a href="https://github.com/fairlytheif/junior-road">github</a></li>
+        </ul></li>
+        <li class="li_header" onclick="fadeFunc(3)"><p>site</p><ul id="li_menu3">
+            <li class="a_class"><p>upd2:02.08.2020</p></li>
+        </ul></li>
+        </div>
     </div>
-</div>
     <div class="game">
         <h1 id="game_text">press any key to start</h1>
         <canvas id='gameC'></canvas>

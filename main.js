@@ -1,43 +1,21 @@
-function calculator(N){
-    let form = document.querySelector('form');
-    let inputName = document.getElementsByName('inputTable');
-    form.inputName.value =
-    form.inputName.value + N;
-    pre_result();
-}
-function clean(){
-    form.inputName.value = '';
-    pre_result();
-}
-function equally(){
-    let microCalc = form.inputName.value;
-    if(microCalc){
-        form.inputName.value =
-    eval(form.inputName.value)
-    }
-    else{
-        form.inputName.value = ''
-    }
-    pre_result();
-}
-function back(){
-   let microCalc = form.inputName.value;
-    form.inputName.value =
-    microCalc.substring(0, microCalc.length-1);
-    pre_result();
-}
-function pre_result(){
-    let result = document.querySelector('.pre_result');
-    let microCalc = form.inputName.value;
-    if (microCalc) {
-        result.innerText = `=${eval(microCalc)}`;
-    } else {
-        result.innerText = '=';
-    }
-}
-function brackets(){
-    form.inputName.value =
-    '('+form.inputName.value+')';
-}
-    
 
+function fadeFunc(number){
+    if(number == 1){
+        $("#li_menu1").fadeToggle(300);
+    }
+    else if(number == 2){
+        $("#li_menu2").fadeToggle(300);
+    }
+    else if(number == 3){
+        $("#li_menu3").fadeToggle(300);
+    }
+}
+
+function redirect(page){
+    if(page == 'calc'){
+        location.href = "calculator.html"
+    }
+    else if(page == 'snake'){
+        location.href = "snake.html"
+    }
+}
