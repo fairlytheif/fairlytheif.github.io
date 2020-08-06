@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fairlytheif</title> 
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="calculator.css">
+    <link rel="stylesheet" href="snake.css">
+    <link rel="manifest" href="public/manifest.json">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="main.js" defer></script>
+    <script src="calculator.js"></script>
+
+</head>
+<body>
+    <div class="calculator" style="margin-top: 5% ;">
+        <div class=" input">
+            <form action="" name="form">
+            <input type="text" class="inputTable" readonly value="" name="inputName">
+        </form>
+        <div class="pre_result">=</div>
+        </div>
+        
+           
+        <div class="numBtn back" onclick="back()">&larr;</div>
+        <div class="numBtn clean" onclick="clean()">C</div>
+        <div class="numBtn" onclick="calculator('+')">+</div>
+        <div class="numBtn" onclick="calculator('-')">-</div>
+        <div class="numBtn" onclick="calculator('*')">*</div>
+        <div class="numBtn" onclick="calculator('/')">/</div>
+        <div class="numBtn" onclick="calculator('7')">7</div>
+        <div class="numBtn" onclick="calculator('8')">8</div>
+        <div class="numBtn" onclick="calculator('9')">9</div>
+        <div class="numBtn" onclick="brackets()">()</div>
+        <div class="numBtn" onclick="calculator('4')">4</div>
+        <div class="numBtn" onclick="calculator('5')">5</div>
+        <div class="numBtn" onclick="calculator('6')">6</div>
+        <div class="numBtn" onclick="calculator('.')">.</div>
+        <div class="numBtn" onclick="calculator('1')">1</div>
+        <div class="numBtn" onclick="calculator('2')">2</div>
+        <div class="numBtn equally" onclick="equally()">=</div>
+        <div class="numBtn zero" onclick="calculator('0')">0</div>
+        <div class="numBtn" onclick="calculator('3')">3</div>
+        </div>
+      </div>
+
+        <div class="game">
+            <h1 id="game_text">press any key to start</h1>
+            <canvas id='gameC'></canvas>
+            <h1 id="scoreText">score:0</h1>
+        </div>
+    
+        <script src="snake.js"></script>
+
+
+        <div id="root"></div>
+   
+</body>
+</html>
