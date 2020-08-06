@@ -3,7 +3,6 @@
 window.onload = function(){ // beginning of the beginning
     addEventListener('keydown',keyPush);
     setInterval(game, 1000/60);
-    alert("Use WASD or arrows")
 }
 let
 canvas = document.getElementById('gameC'),
